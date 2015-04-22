@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc -O1 -nostartfiles -Map=Gefest.map -mcpu=cortex-m3 -mthumb -LC:\CooCox\CoIDE\workspace\Gefest --gc-sections -TC:\CooCox\CoIDE\workspace\Gefest\link.ld -g">
+      <target file="Gefest.elf" lastModified="142b8448402">
+         <source file="..\obj\stm32f10x_rtc.o" lastModified="142b844798c"/>
+         <source file="..\obj\stm32f10x_tim.o" lastModified="142b8447aec"/>
+         <source file="..\obj\core_cm3.o" lastModified="142b8447b4e"/>
+         <source file="..\obj\system_stm32f10x.o" lastModified="142b8447bb6"/>
+         <source file="..\obj\stm32f10x_pwr.o" lastModified="142b8447c3d"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="142b8447cc1"/>
+         <source file="..\obj\main.o" lastModified="142b8447d4e"/>
+         <source file="..\obj\stm32f10x_RS485.o" lastModified="142b8447ddd"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="142b8447e86"/>
+         <source file="..\obj\startup_stm32f10x_cl.o" lastModified="142b8447ed1"/>
+         <source file="..\obj\stm32f10x_exti.o" lastModified="142b8447f37"/>
+         <source file="..\obj\stm32f10x_usart.o" lastModified="142b8447fdf"/>
+         <source file="..\obj\stm32f10x_RS485Master.o" lastModified="142b84480e0"/>
+         <source file="..\obj\stm32f10x_dma.o" lastModified="142b844815d"/>
+         <source file="..\obj\misc.o" lastModified="142b84481c4"/>
+         <source file="..\obj\stm32f10x_i2c.o" lastModified="142b844827e"/>
+         <source file="..\obj\stm32f10x_bkp.o" lastModified="142b84482df"/>
+         <source file="..\obj\stm32f10x_iwdg.o" lastModified="142b8448335"/>
+      </target>
+   </processor>
+</history>
