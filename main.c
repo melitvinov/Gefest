@@ -1,5 +1,13 @@
+/*
+ *  Version:
+ *  Gefest - Firmware_0-0-1-00
+ *
+ */
+
 //#define DEBUG
 //#define NOTESTMEM
+
+
 #include "stm32f10x_Define.h"
 #include "stm32f10x_RS485Master.h"
 #include "stm32f10x_RS485.h"
