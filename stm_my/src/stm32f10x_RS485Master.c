@@ -1,4 +1,5 @@
 #pragma pack(1)
+#include "stm32f10x_Define.h"
 #include "stm32f10x_rcc.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_usart.h"
@@ -218,7 +219,7 @@ void USART_OUT_Configuration(uint16_t fbrate)
 #define FAN_NO_ANSWER		0x10
 
 #define MAX_FAN_CMD			6
-#define MAX_FAN_SPEED		20
+#define MAX_FAN_SPEED		60
 
 //#define FUN_TYPE1
 #define FUN_TYPE2
@@ -239,6 +240,9 @@ void USART_OUT_Configuration(uint16_t fbrate)
 #define FAN_CMD_3			0x08
 #define FAN_CMD_4			0x1A
 #define FAN_CMD_5			0x21
+#define FAN_CMD_6			0x02
+#define FAN_CMD_7			0x04
+#define FAN_CMD_8			0x22
 #endif
 
 
@@ -428,6 +432,9 @@ void SendFans(void* fFanBlock)
 			FanBlock->NFans=127;
 		fanCycle%=FanBlock->NFans;
 	}
+
+	ClrDog;
+
 	switch(fanCmd)
 	{
 	case 0:
@@ -484,13 +491,17 @@ void SendFans(void* fFanBlock)
 	{
 	case 0:
 		fSpeed=FanBlock->Speed;
-		if (fSpeed>MAX_FAN_SPEED)
-			fSpeed=MAX_FAN_SPEED;
-		fSpeed=((int)fSpeed*65536)/100;
-		RS485_Master_SendData(0,0x06,0x00+FAN_CMD_2,fSpeed,&FanBroadcast,0);
+		//if (fSpeed>1015)
+		//	fSpeed=1015;
+
+		//fSpeed=((int)fSpeed*1000)/100;
+
+		//RS485_Master_SendData(0,0x06,0x00+FAN_CMD_2,fSpeed,&FanBroadcast,0);
+		RS485_Master_SendData(0,0x06,0x00+FAN_CMD_6,fSpeed,&FanBroadcast,0);
 		break;
 	case 1:
-		RS485_Master_SendData(0,0x06,0x00+FAN_CMD_3,0xFFFF,0,0);
+		RS485_Master_SendData(0,0x06,0x00+FAN_CMD_7,0x03,0,0);
+		//RS485_Master_SendData(0,0x06,0x00+FAN_CMD_3,0x03E8,0,0); // установка максимальной скорости если стоит работа по предустановкам
 		break;
 	}
 }

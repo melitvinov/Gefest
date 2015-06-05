@@ -1,3 +1,4 @@
+#include "stm32f10x_Define.h"
 #include "stm32f10x_rcc.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_usart.h"
@@ -147,14 +148,27 @@ void CheckRSTime()
 */
 }
 
+//uint16_t count = 0;
 
 USART_PC_INT_VECT
 {
 	uint16_t retByte,i;
 	//uint16_t i;
 
+
+	//ClrDog;
+
+
 	if ((USART_PC->SR & USART_FLAG_RXNE)!=0)
 	{
+		//if (count == 100)
+		//{
+		//	count = 0;
+		//	while(1) {};
+		//}
+		//count++;
+
+
 //			USART_PC->SR=0;
 			retByte = USART_ReceiveData(USART_PC);
 //			if (retByte&0x100) PHASE_RS=RS_START;

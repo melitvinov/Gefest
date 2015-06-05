@@ -1,3 +1,4 @@
+#include "stm32f10x_Define.h"
 #include "stm32f10x_Rootines.h"
 #include "misc.h"
 #include "stm32f10x_tim.h"
@@ -100,7 +101,10 @@ void Init_STM32(void) {
 		Port_Init();
 		Addr_Init();
 		InitMainTimer();
-////		Init_IWDG(&nReset);
+
+		Init_IWDG(&nReset);
+		//Init_IWDG(625);
+
 		Check_IWDG();
 
 
@@ -109,6 +113,8 @@ void Init_STM32(void) {
 
 void SetRegOut(uint32_t Condition)
 {
+	ClrDog;
+
 	PORT_REL1_OUT->ODR&=~PIN_REL1_OUT;
 	PORT_REL1_OUT->ODR|=((Condition&0xFF)<<(SM_REL1_OUT));
 	//PORT_REL1_OUT->ODR=0xff;
@@ -121,6 +127,8 @@ void SetRegOut(uint32_t Condition)
 
 uint32_t SetOutBit(uint32_t maskBit, char nBit)
 {
+	ClrDog;
+
 	if (GD.Hot.Mode&maskBit)
 	{
 		if (GD.Hot.OutR&maskBit)
@@ -158,6 +166,9 @@ uint32_t DoIt(void)
 	uint32_t OutReg;
 	int16_t i;
 	OutReg=0;
+
+	ClrDog;
+
 	for (i=0;i<24;i++)
 	{
 		OutReg|=SetOutBit(0x01<<i,i);
@@ -216,6 +227,9 @@ void TIM2_IRQHandler(void)
     			break;
     	}
     }
+
+    ClrDog;  //XXX
+
     //GD.FanBlock.Speed=GD.RegBlock[0].Value;
     SendFans(&GD.FanBlock);
     //GD.Hot.OutR=22;//GD.RegBlock[0].Value;
@@ -233,8 +247,11 @@ void Init_IWDG(uint16_t* fIWDG_Reset)
 	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
 	IWDG_SetPrescaler(IWDG_Prescaler_32);
 	IWDG_SetReload(80000);
+
 	IWDG_ReloadCounter();
+	#ifndef DEBUG
 	IWDG_Enable();
+	#endif
 }
 
 void Check_IWDG(void)

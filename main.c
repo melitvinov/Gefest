@@ -1,6 +1,6 @@
 /*
  *  Version:
- *  Gefest - Firmware_0-0-1-00
+ *  Gefest - Firmware_0-0-1-01
  *
  */
 
@@ -21,7 +21,7 @@ main()
 	SETEA;
 	while(1)
 	{
-
+		//Check_IWDG();  //XXX
 	}
 }
 
