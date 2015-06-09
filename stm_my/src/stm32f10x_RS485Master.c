@@ -221,8 +221,8 @@ void USART_OUT_Configuration(uint16_t fbrate)
 #define MAX_FAN_CMD			6
 #define MAX_FAN_SPEED		60
 
-//#define FUN_TYPE1
-#define FUN_TYPE2
+#define FUN_TYPE1
+//#define FUN_TYPE2
 
 #if defined (FUN_TYPE1)
 #define FAN_CMD_0			0x01
@@ -490,6 +490,7 @@ void SendFans(void* fFanBlock)
 	switch(fanCmd)
 	{
 	case 0:
+	{
 		fSpeed=FanBlock->Speed;
 		//if (fSpeed>1015)
 		//	fSpeed=1015;
@@ -498,11 +499,12 @@ void SendFans(void* fFanBlock)
 
 		//RS485_Master_SendData(0,0x06,0x00+FAN_CMD_2,fSpeed,&FanBroadcast,0);
 		RS485_Master_SendData(0,0x06,0x00+FAN_CMD_6,fSpeed,&FanBroadcast,0);
-		break;
-	case 1:
-		RS485_Master_SendData(0,0x06,0x00+FAN_CMD_7,0x03,0,0);
+	}
+	break;
+	//case 1:
+	//	RS485_Master_SendData(0,0x06,0x00+FAN_CMD_7,0x03,0,0);
 		//RS485_Master_SendData(0,0x06,0x00+FAN_CMD_3,0x03E8,0,0); // установка максимальной скорости если стоит работа по предустановкам
-		break;
+	//	break;
 	}
 }
 #endif

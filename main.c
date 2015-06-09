@@ -1,7 +1,13 @@
 /*
+ *  defined FUN_TYPE1
  *  Version:
- *  Gefest - Firmware_0-0-1-01
- *
+ *  Gefest - Firmware_0-0-2-01
+ */
+
+/*
+ *  defined FUN_TYPE2
+ *  Version:
+ *  Gefest - Firmware_0-0-1-03
  */
 
 //#define DEBUG
