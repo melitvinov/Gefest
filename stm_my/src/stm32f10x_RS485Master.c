@@ -221,8 +221,8 @@ void USART_OUT_Configuration(uint16_t fbrate)
 #define MAX_FAN_CMD			6
 #define MAX_FAN_SPEED		60
 
-#define FUN_TYPE1
-//#define FUN_TYPE2
+//#define FUN_TYPE1
+#define FUN_TYPE2
 
 #if defined (FUN_TYPE1)
 #define FAN_CMD_0			0x01
